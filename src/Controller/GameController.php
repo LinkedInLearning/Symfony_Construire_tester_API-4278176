@@ -29,7 +29,7 @@ final class GameController extends AbstractController
         $gamesList = $gameRepository->findAll();
 
         if ($gamesList) {
-            $jsonGames = $serializer->serialize($gamesList, 'json',);
+            $jsonGames = $serializer->serialize($gamesList, 'json', ['groups' => 'getGames']);
             return new JsonResponse($jsonGames, Response::HTTP_OK, [], true);
         }
 
@@ -42,7 +42,7 @@ final class GameController extends AbstractController
         $game = $gameRepository->find($id);
 
         if ($game) {
-            $jsonGameDetails = $serializer->serialize($game, 'json',);
+            $jsonGameDetails = $serializer->serialize($game, 'json');
             return new JsonResponse($jsonGameDetails, Response::HTTP_OK, [], true);
         }
 
