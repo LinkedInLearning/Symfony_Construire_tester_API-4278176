@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 
 final class GameController extends AbstractController
@@ -66,7 +67,6 @@ final class GameController extends AbstractController
         $newGame = $serializer->deserialize($request->getContent(), Game::class, 'json');
 
         $content = $request->toArray();
-
         if ($content['idDeveloper']) {
             $idDeveloper = $content['idDeveloper'];
             $newGame->setDeveloper($developerRepository->find($idDeveloper));
@@ -78,5 +78,29 @@ final class GameController extends AbstractController
         $jsonJeu = $serializer->serialize($newGame, 'json', ['groups' => 'getGames']);
 
         return new JsonResponse($jsonJeu, Response::HTTP_CREATED, [], true);
+    }
+
+
+
+    #[Route('/api/games/{id}', name: "app_update_game", methods: ['PUT'])]
+    public function updateGames(Game $currentGame, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, DeveloperRepository $developerRepository): JsonResponse
+    {
+        $updatedGame = $serializer->deserialize(
+            $request->getContent(),
+            Game::class,
+            'json',
+            [AbstractNormalizer::OBJECT_TO_POPULATE => $currentGame]
+        );
+
+        $content = $request->toArray();
+        if ($content['idDeveloper']) {
+            $idDeveloper = $content['idDeveloper'];
+            $updatedGame->setDeveloper($developerRepository->find($idDeveloper));
+        }
+
+        $entityManager->persist($updatedGame);
+        $entityManager->flush();
+
+        return new JsonResponse(null, JsonResponse::HTTP_NO_CONTENT);
     }
 }
