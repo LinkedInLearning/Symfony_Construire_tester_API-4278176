@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\GameRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -23,10 +24,13 @@ final class GameController extends AbstractController
         return new JsonResponse($data, Response::HTTP_OK, [], false);
     }
 
+
     #[Route('/api/games', name: 'app_show_games', methods: ['GET'])]
-    public function showGames(SerializerInterface $serializer, GameRepository $gameRepository): JsonResponse
+    public function showGames(Request $request, SerializerInterface $serializer, GameRepository $gameRepository): JsonResponse
     {
-        $gamesList = $gameRepository->findAll();
+        $numPage = $request->get('page', 1);
+        $limit = $request->get('limit', 3);
+        $gamesList = $gameRepository->findAllWithPagination($numPage, $limit);
 
         if ($gamesList) {
             $jsonGames = $serializer->serialize($gamesList, 'json', ['groups' => 'getGames']);
@@ -35,6 +39,7 @@ final class GameController extends AbstractController
 
         return new JsonResponse(null, Response::HTTP_NOT_FOUND);
     }
+
 
     #[Route('/api/games/{id}', name: 'app_show_game_details', methods: ['GET'])]
     public function showDetailsGame(int $id, SerializerInterface $serializer, GameRepository $gameRepository): JsonResponse
