@@ -17,12 +17,12 @@ class GameRepository extends ServiceEntityRepository
     }
 
 
-    public function findAllWithPagination($numPage, $limit)
+    public function findAllWithPage($numPage, $limitNbGames)
     {
 
         $query = $this->createQueryBuilder('b')
-            ->setFirstResult(($numPage - 1) * $limit)
-            ->setMaxResults($limit);
+            ->setFirstResult(($numPage - 1) * $limitNbGames)
+            ->setMaxResults($limitNbGames);
         return $query->getQuery()->getResult();
     }
 

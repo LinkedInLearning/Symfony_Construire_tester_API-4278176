@@ -29,8 +29,8 @@ final class GameController extends AbstractController
     public function showGames(Request $request, SerializerInterface $serializer, GameRepository $gameRepository): JsonResponse
     {
         $numPage = $request->get('page', 1);
-        $limit = $request->get('limit', 3);
-        $gamesList = $gameRepository->findAllWithPagination($numPage, $limit);
+        $limitNbGames = $request->get('limit', 3);
+        $gamesList = $gameRepository->findAllWithPage($numPage, $limitNbGames);
 
         if ($gamesList) {
             $jsonGames = $serializer->serialize($gamesList, 'json', ['groups' => 'getGames']);
