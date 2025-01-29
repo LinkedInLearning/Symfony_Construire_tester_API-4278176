@@ -29,6 +29,7 @@ final class GameController extends AbstractController
     }
 
 
+
     #[Route('/api/games', name: 'app_show_games', methods: ['GET'])]
     public function showGames(Request $request, SerializerInterface $serializer, GameRepository $gameRepository): JsonResponse
     {
@@ -43,6 +44,7 @@ final class GameController extends AbstractController
 
         return new JsonResponse(null, Response::HTTP_NOT_FOUND);
     }
+
 
 
     #[Route('/api/games/{id}', name: 'app_show_game_details', methods: ['GET'])]
@@ -102,5 +104,16 @@ final class GameController extends AbstractController
         $entityManager->flush();
 
         return new JsonResponse(null, JsonResponse::HTTP_NO_CONTENT);
+    }
+
+
+
+    #[Route('/api/games/{id}', name: 'app_delete_game', methods: ['DELETE'])]
+    public function deleteGame(Game $game, EntityManagerInterface $entityManager): JsonResponse
+    {
+        $entityManager->remove($game);
+        $entityManager->flush();
+
+        return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }
 }
