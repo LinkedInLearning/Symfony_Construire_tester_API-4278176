@@ -15,6 +15,7 @@ class Developer
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["getGames"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -22,9 +23,11 @@ class Developer
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["getGames"])]
     private ?string $country = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups(["getGames"])]
     private ?\DateTimeInterface $founded = null;
 
     /**
