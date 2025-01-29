@@ -7,8 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 
 final class GameController extends AbstractController
 {
@@ -22,18 +20,5 @@ final class GameController extends AbstractController
 
         //return $this->json($data);
         return new JsonResponse($data, Response::HTTP_OK, [], false);
-    }
-
-    #[Route('/api/games', name: 'app_show_games', methods: ['GET'])]
-    public function showGames(SerializerInterface $serializer, GameRepository $gameRepository): JsonResponse
-    {
-        $gamesList = $gameRepository->findAll();
-
-        if ($gamesList) {
-            $jsonGames = $serializer->serialize($gamesList, 'json',);
-            return new JsonResponse($jsonGames, Response::HTTP_OK, [], true);
-        }
-
-        return new JsonResponse(null, Response::HTTP_NOT_FOUND);
     }
 }
