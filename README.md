@@ -19,10 +19,77 @@ La branche master correspond au code à la fin de la formation.
 
 ## Installation
 
-1. Pour utiliser ces fichiers d’exercice, vous avez besoin de : 
-   - [Liste des logiciels/dépendances utiles à la formation] 
-2. Clonez ce dossier Repository sur votre machine locale (Mac), CMD (Windows), ou sur un outil GUI tel que SourceTree. 
-3. [Instructions spécifiques au cours] 
+### Prérequis
+- PHP >= 8.2
+- Composer
+- Symfony CLI
+- MySQL
+
+### Étapes d'installation
+
+#### 1. Cloner le projet
+
+```bash
+git clone https://github.com/LinkedInLearning/Symfony_Construire_tester_API-4278176.git
+cd Symfony_Construire_tester_API-4278176
+```
+
+#### 2. Installer les dépendances
+
+```bash
+composer install
+```
+
+#### 3. Configurer l'environnement
+
+Modifiez la variable DATABASE_URL depuis le fichier `.env` pour renseigner la information de connexion à votre base de données :
+
+```
+DATABASE_URL="mysql://utilisateur:motdepasse@127.0.0.1:3306/nom_de_la_base?serverVersion=8.0&charset=utf8mb4"
+```
+
+#### 4. Créer la base de données
+
+```bash
+php bin/console doctrine:database:create
+```
+
+#### 5. Appliquer les migrations
+```bash
+php bin/console make:migration
+```
+
+```bash
+php bin/console doctrine:migrations:migrate
+```
+
+#### 6. Charger les fixtures
+
+```bash
+php bin/console doctrine:fixtures:load
+```
+
+#### 7. Lancer le serveur Symfony
+
+```bash
+symfony serve
+```
+ou
+
+```bash
+symfony server:start
+```
+
+#### 8. Accéder à l'application
+
+Ouvrez votre navigateur et rendez-vous sur :
+
+```
+http://127.0.0.1:8000
+```
+
+Votre projet Symfony est maintenant prêt à être utilisé ! 🚀
+
 
 
 ### Formateur
