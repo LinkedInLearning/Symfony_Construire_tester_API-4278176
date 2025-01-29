@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Game;
+use App\Repository\DeveloperRepository;
 use App\Repository\GameRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,5 +55,28 @@ final class GameController extends AbstractController
         }
 
         return new JsonResponse(null, Response::HTTP_NOT_FOUND);
+    }
+
+
+
+    #[Route('/api/games', name: "app_add_game", methods: ['POST'])]
+    public function addNewGame(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, DeveloperRepository $developerRepository): JsonResponse
+    {
+
+        $newGame = $serializer->deserialize($request->getContent(), Game::class, 'json');
+
+        $content = $request->toArray();
+
+        if ($content['idDeveloper']) {
+            $idDeveloper = $content['idDeveloper'];
+            $newGame->setDeveloper($developerRepository->find($idDeveloper));
+        }
+
+        $entityManager->persist($newGame);
+        $entityManager->flush();
+
+        $jsonJeu = $serializer->serialize($newGame, 'json', ['groups' => 'getGames']);
+
+        return new JsonResponse($jsonJeu, Response::HTTP_CREATED, [], true);
     }
 }
