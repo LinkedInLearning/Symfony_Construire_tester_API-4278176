@@ -35,4 +35,17 @@ final class GameController extends AbstractController
 
         return new JsonResponse(null, Response::HTTP_NOT_FOUND);
     }
+
+    #[Route('/api/games/{id}', name: 'app_show_game_details', methods: ['GET'])]
+    public function showDetailsGame(int $id, SerializerInterface $serializer, GameRepository $gameRepository): JsonResponse
+    {
+        $game = $gameRepository->find($id);
+
+        if ($game) {
+            $jsonGameDetails = $serializer->serialize($game, 'json',);
+            return new JsonResponse($jsonGameDetails, Response::HTTP_OK, [], true);
+        }
+
+        return new JsonResponse(null, Response::HTTP_NOT_FOUND);
+    }
 }
