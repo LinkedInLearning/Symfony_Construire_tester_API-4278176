@@ -21,17 +21,17 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 final class GameController extends AbstractController
 {
 
-    #[Route('/api/getExternalData', name: 'app_other_api', methods: 'GET')]
-    public function getSymfonyDoc(HttpClientInterface $httpClient): JsonResponse
+    #[Route('/api/externalData', name: 'app_other_api', methods: 'GET')]
+    public function getExternalApiData(HttpClientInterface $httpClient): JsonResponse
     {
         $response = $httpClient->request(
             'GET',
-            'https://api.github.com/repos/symfony/symfony-docs'
+            'https://api.github.com/repos/symfony/symfony'
         );
         return new JsonResponse($response->getContent(), $response->getStatusCode(), [], true);
     }
 
-    /*#[Route('/api', name: 'app_game')]
+    /*#[Route('/api', name: 'app_game')]s
     public function index(): JsonResponse
     {
         $data = [
