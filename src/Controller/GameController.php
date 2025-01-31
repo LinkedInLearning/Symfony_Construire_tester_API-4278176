@@ -16,10 +16,21 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Nelmio\ApiDocBundle\Attribute\Model;
 use Nelmio\ApiDocBundle\Attribute\Security;
 use OpenApi\Attributes as OA;
-
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 final class GameController extends AbstractController
 {
+
+    #[Route('/api/getExternalData', name: 'app_other_api', methods: 'GET')]
+    public function getSymfonyDoc(HttpClientInterface $httpClient): JsonResponse
+    {
+        $response = $httpClient->request(
+            'GET',
+            'https://api.github.com/repos/symfony/symfony-docs'
+        );
+        return new JsonResponse($response->getContent(), $response->getStatusCode(), [], true);
+    }
+
     /*#[Route('/api', name: 'app_game')]
     public function index(): JsonResponse
     {
