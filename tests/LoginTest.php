@@ -26,12 +26,12 @@ class LoginTest extends WebTestCase
         $this->createTestUser();
     }
 
-    private function resetDatabase(): void
+    public function resetDatabase(): void
     {
         $this->entityManager->createQuery('DELETE FROM App\Entity\User')->execute();
     }
 
-    private function createTestUser(): void
+    public function createTestUser(): void
     {
         $user = new User();
         $user->setEmail('test@test.com');
@@ -43,7 +43,7 @@ class LoginTest extends WebTestCase
     }
 
     // On vérifie qu'on récupère bien un token lors de la connexion et on le retourne
-    private function getToken(): string
+    public function getToken(): string
     {
         $this->client->request('POST', '/api/login_check', [], [], [
             'CONTENT_TYPE' => 'application/json',
