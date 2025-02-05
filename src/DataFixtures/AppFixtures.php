@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Developpeur;
+use App\Entity\Developer;
 use App\Entity\Game;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -11,7 +11,7 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-
+        // Création des jeux
         $jeu1 = new Game();
         $jeu1->setTitle("The Legend of Zelda: Breath of the Wild");
         $jeu1->setReleaseDate(new \DateTime('2017-03-03'));
@@ -106,7 +106,7 @@ class AppFixtures extends Fixture
         $jeu14 = new Game();
         $jeu14->setTitle("Tetris 99");
         $jeu14->setReleaseDate(new \DateTime('2019-02-13'));
-        $jeu14->setPrice(0); 
+        $jeu14->setPrice(0);
         $jeu14->setGenre("Puzzle, Battle Royale");
         $manager->persist($jeu14);
 
@@ -116,6 +116,87 @@ class AppFixtures extends Fixture
         $jeu15->setPrice(59.99);
         $jeu15->setGenre("Aventure, Plateforme");
         $manager->persist($jeu15);
+
+
+        // Création des développeurs
+        $nintendo = new Developer();
+        $nintendo->setName("Nintendo");
+        $nintendo->setCountry("Japan");
+        $nintendo->setFounded(new \DateTime('1889-09-23'));
+        $manager->persist($nintendo);
+
+        $netherrealm = new Developer();
+        $netherrealm->setName("NetherRealm Studios");
+        $netherrealm->setCountry("USA");
+        $netherrealm->setFounded(new \DateTime('2010-04-19'));
+        $manager->persist($netherrealm);
+
+        $sega = new Developer();
+        $sega->setName("SEGA");
+        $sega->setCountry("Japan");
+        $sega->setFounded(new \DateTime('1960-06-03'));
+        $manager->persist($sega);
+
+        $ubisoft = new Developer();
+        $ubisoft->setName("Ubisoft");
+        $ubisoft->setCountry("France");
+        $ubisoft->setFounded(new \DateTime('1986-03-28'));
+        $manager->persist($ubisoft);
+
+        $capcom = new Developer();
+        $capcom->setName("Capcom");
+        $capcom->setCountry("Japan");
+        $capcom->setFounded(new \DateTime('1979-05-30'));
+        $manager->persist($capcom);
+
+        $blizzard = new Developer();
+        $blizzard->setName("Blizzard Entertainment");
+        $blizzard->setCountry("USA");
+        $blizzard->setFounded(new \DateTime('1991-02-08'));
+        $manager->persist($blizzard);
+
+        $epic = new Developer();
+        $epic->setName("Epic Games");
+        $epic->setCountry("USA");
+        $epic->setFounded(new \DateTime('1991-01-01'));
+        $manager->persist($epic);
+
+        $ea = new Developer();
+        $ea->setName("Electronic Arts");
+        $ea->setCountry("USA");
+        $ea->setFounded(new \DateTime('1982-05-28'));
+        $manager->persist($ea);
+
+        $cdProjekt = new Developer();
+        $cdProjekt->setName("CD Projekt Red");
+        $cdProjekt->setCountry("Poland");
+        $cdProjekt->setFounded(new \DateTime('2002-05-01'));
+        $manager->persist($cdProjekt);
+
+        $squareEnix = new Developer();
+        $squareEnix->setName("Square Enix");
+        $squareEnix->setCountry("Japan");
+        $squareEnix->setFounded(new \DateTime('1986-04-01'));
+        $manager->persist($squareEnix);
+
+        // Associer les jeux aux développeurs
+        /*
+        $jeu1->setDeveloper($nintendo);
+        $jeu2->setDeveloper($nintendo);
+        $jeu3->setDeveloper($netherrealm);
+        $jeu4->setDeveloper($sega);
+        $jeu5->setDeveloper($ubisoft);
+        $jeu6->setDeveloper($capcom);
+        $jeu7->setDeveloper($nintendo);
+        $jeu8->setDeveloper($blizzard);
+        $jeu9->setDeveloper($epic);
+        $jeu10->setDeveloper($ea);
+        $jeu11->setDeveloper($nintendo);
+        $jeu12->setDeveloper($cdProjekt);
+        $jeu13->setDeveloper($squareEnix);
+        $jeu14->setDeveloper($nintendo);
+        $jeu15->setDeveloper($nintendo);
+        */
 
         // Sauvegarder dans la base de données
         $manager->flush();
