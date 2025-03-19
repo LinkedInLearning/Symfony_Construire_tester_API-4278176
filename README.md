@@ -92,9 +92,9 @@ Votre projet Symfony est maintenant prêt à être utilisé ! 🚀
 
 
 
-### Formateur
+### Formatrice
 
-**Nom du formateur** 
+**Maheva Dessart** 
 
  Retrouvez mes autres formations sur [LinkedIn Learning][lil-URL-trainer].
 
