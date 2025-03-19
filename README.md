@@ -1,10 +1,10 @@
-# Nom final de la formation
+# Symfony : Construire et tester des API
 
-Ce dossier Repository est lié au cours `Nom final de la formation`. Le cours entier est disponible sur [LinkedIn Learning][lil-course-url].
+Ce dossier Repository est lié au cours `Symfony : Construire et tester des API`. Le cours entier est disponible sur [LinkedIn Learning][lil-course-url].
 
 ![Nom final de la formation][lil-thumbnail-url] 
 
-DESCRIPTION DE LA FORMATION
+Les API jouent un rôle clé dans le développement web moderne, facilitant l'intégration de services comme les cartes de Google Maps ou les comparateurs de prix de vols. Dans cette formation animée par Maheva Dessart, vous apprendrez à créer une API robuste avec PHP et Symfony. Vous découvrirez les étapes essentielles pour construire votre API de manière efficace et durable. La formation inclut également une introduction aux tests unitaires et fonctionnels, afin de garantir la fiabilité et la performance de votre API sur le long terme. Cette formation vous permettra d'acquérir les compétences nécessaires pour construire des API performantes et tester leur bon fonctionnement.
 
 ## Instructions
 
@@ -100,7 +100,7 @@ Votre projet Symfony est maintenant prêt à être utilisé ! 🚀
 
 [0]: # (Replace these placeholder URLs with actual course URLs)
 [lil-course-url]: https://www.linkedin.com
-[lil-thumbnail-url]: https:
+[lil-thumbnail-url]: https://media.licdn.com/dms/image/v2/D4E0DAQH9ekH122MIhg/learning-public-crop_675_1200/B4EZWpBbmEGYAY-/0/1742297480535?e=2147483647&v=beta&t=1tGhVhOK11RdaYNo3H6DZ3hvcngrO6JyJn9DysIyOJs
 [lil-URL-trainer]: https://
 
 [1]: # (End of FR-Instruction ###############################################################################################)
