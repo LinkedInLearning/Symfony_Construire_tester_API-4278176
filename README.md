@@ -99,8 +99,8 @@ Votre projet Symfony est maintenant prêt à être utilisé ! 🚀
  Retrouvez mes autres formations sur [LinkedIn Learning][lil-URL-trainer].
 
 [0]: # (Replace these placeholder URLs with actual course URLs)
-[lil-course-url]: https://www.linkedin.com
+[lil-course-url]: https://www.linkedin.com/learning/symfony-construire-et-tester-des-api
 [lil-thumbnail-url]: https://media.licdn.com/dms/image/v2/D4E0DAQH9ekH122MIhg/learning-public-crop_675_1200/B4EZWpBbmEGYAY-/0/1742297480535?e=2147483647&v=beta&t=1tGhVhOK11RdaYNo3H6DZ3hvcngrO6JyJn9DysIyOJs
-[lil-URL-trainer]: https://
+[lil-URL-trainer]: https://www.linkedin.com/learning/instructors/maheva-dessart
 
 [1]: # (End of FR-Instruction ###############################################################################################)
